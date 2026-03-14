@@ -14,4 +14,31 @@ public class MuscleGroup {
 
     @ManyToMany(mappedBy = "muscleGroups")
     private List<Exercise> exercises;
+
+    public MuscleGroup() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
 }

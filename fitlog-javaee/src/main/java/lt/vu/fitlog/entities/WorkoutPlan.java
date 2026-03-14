@@ -1,10 +1,6 @@
 package lt.vu.fitlog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -19,4 +15,39 @@ public class WorkoutPlan {
 
     @OneToMany(mappedBy = "workoutPlan")
     private List<Exercise> exercises;
+
+    public WorkoutPlan() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
 }

@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <title>FitLog</title>
 </h:head>
 <h:body>
     <h1>FitLog</h1>
     <h2>Gym Workout Tracker</h2>
-    <p>#{helloBean.message}</p>
+
+    <h3>Add Workout Plan</h3>
+    <h:form>
+        <p>
+            Name:
+            <h:inputText value="#{workoutPlans.workoutPlanToCreate.name}" />
+        </p>
+        <p>
+            Difficulty:
+            <h:inputText value="#{workoutPlans.workoutPlanToCreate.difficulty}" />
+        </p>
+        <h:commandButton value="Add" action="#{workoutPlans.createWorkoutPlan}" />
+    </h:form>
+
+    <h3>Workout Plans</h3>
+    <ui:repeat value="#{workoutPlans.allWorkoutPlans}" var="plan">
+        <p>
+            #{plan.name} - #{plan.difficulty}
+        </p>
+    </ui:repeat>
 </h:body>
 </html>

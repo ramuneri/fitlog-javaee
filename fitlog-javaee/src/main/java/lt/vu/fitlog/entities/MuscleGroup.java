@@ -1,9 +1,7 @@
 package lt.vu.fitlog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class MuscleGroup {
@@ -13,4 +11,7 @@ public class MuscleGroup {
     private Long id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "muscleGroups")
+    private List<Exercise> exercises;
 }

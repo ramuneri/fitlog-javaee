@@ -22,10 +22,31 @@
         <h:commandButton value="Add" action="#{workoutPlans.createWorkoutPlan}" />
     </h:form>
 
+    <h3>Add Exercise</h3>
+    <h:form>
+        <p>
+            Name:
+            <h:inputText value="#{exercises.exerciseToCreate.name}" />
+        </p>
+        <p>
+            Sets:
+            <h:inputText value="#{exercises.exerciseToCreate.sets}" />
+        </p>
+        <p>
+            Reps:
+            <h:inputText value="#{exercises.exerciseToCreate.reps}" />
+        </p>
+        <p>
+            Workout Plan ID:
+            <h:inputText value="#{exercises.workoutPlanId}" />
+        </p>
+        <h:commandButton value="Add Exercise" action="#{exercises.createExercise}" />
+    </h:form>
+
     <h3>Workout Plans</h3>
     <ui:repeat value="#{workoutPlans.allWorkoutPlans}" var="plan">
         <p>
-            #{plan.name} - #{plan.difficulty}
+            ID: #{plan.id} | #{plan.name} - #{plan.difficulty}
         </p>
     </ui:repeat>
 </h:body>

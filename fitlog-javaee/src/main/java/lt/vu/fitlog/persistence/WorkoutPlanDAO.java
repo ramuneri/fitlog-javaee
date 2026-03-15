@@ -21,4 +21,8 @@ public class WorkoutPlanDAO {
         return em.createQuery("select w from WorkoutPlan w", WorkoutPlan.class).getResultList();
     }
 
+    public WorkoutPlan findOne(Long id) {
+        return em.find(WorkoutPlan.class, id);
+    }
+
 }

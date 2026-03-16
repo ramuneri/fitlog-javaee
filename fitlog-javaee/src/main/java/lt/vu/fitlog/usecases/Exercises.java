@@ -9,6 +9,8 @@ import lt.vu.fitlog.persistence.WorkoutPlanDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -43,6 +45,13 @@ public class Exercises {
     @Transactional
     public String createExercise() {
         WorkoutPlan workoutPlan = workoutPlanDAO.findOne(workoutPlanId);
+
+        if (workoutPlan == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Workout Plan ID does not exist.", null));
+            return null;
+        }
+
         exerciseToCreate.setWorkoutPlan(workoutPlan);
         exerciseDAO.persist(exerciseToCreate);
         return "index?faces-redirect=true";
@@ -53,8 +62,22 @@ public class Exercises {
         Exercise exercise = exerciseDAO.findOne(exerciseId);
         MuscleGroup muscleGroup = muscleGroupDAO.findOne(muscleGroupId);
 
-        exercise.getMuscleGroups().add(muscleGroup);
-        muscleGroup.getExercises().add(exercise);
+        if (exercise == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise ID does not exist.", null));
+            return null;
+        }
+
+        if (muscleGroup == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Muscle Group ID does not exist.", null));
+            return null;
+        }
+
+        if (!exercise.getMuscleGroups().contains(muscleGroup)) {
+            exercise.getMuscleGroups().add(muscleGroup);
+            muscleGroup.getExercises().add(exercise);
+        }
 
         return "index?faces-redirect=true";
     }

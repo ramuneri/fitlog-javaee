@@ -1,14 +1,18 @@
 package lt.vu.fitlog.usecases;
 
 import lt.vu.fitlog.entities.Exercise;
+import lt.vu.fitlog.entities.MuscleGroup;
 import lt.vu.fitlog.entities.WorkoutPlan;
 import lt.vu.fitlog.persistence.ExerciseDAO;
+import lt.vu.fitlog.persistence.MuscleGroupDAO;
 import lt.vu.fitlog.persistence.WorkoutPlanDAO;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -20,9 +24,21 @@ public class Exercises {
     @Inject
     private WorkoutPlanDAO workoutPlanDAO;
 
+    @Inject
+    private MuscleGroupDAO muscleGroupDAO;
+
+    private List<Exercise> allExercises;
+
     private Exercise exerciseToCreate = new Exercise();
 
     private Long workoutPlanId;
+    private Long exerciseId;
+    private Long muscleGroupId;
+
+    @PostConstruct
+    public void init() {
+        allExercises = exerciseDAO.loadAll();
+    }
 
     @Transactional
     public String createExercise() {
@@ -30,6 +46,21 @@ public class Exercises {
         exerciseToCreate.setWorkoutPlan(workoutPlan);
         exerciseDAO.persist(exerciseToCreate);
         return "index?faces-redirect=true";
+    }
+
+    @Transactional
+    public String assignMuscleGroupToExercise() {
+        Exercise exercise = exerciseDAO.findOne(exerciseId);
+        MuscleGroup muscleGroup = muscleGroupDAO.findOne(muscleGroupId);
+
+        exercise.getMuscleGroups().add(muscleGroup);
+        muscleGroup.getExercises().add(exercise);
+
+        return "index?faces-redirect=true";
+    }
+
+    public List<Exercise> getAllExercises() {
+        return allExercises;
     }
 
     public Exercise getExerciseToCreate() {
@@ -46,5 +77,21 @@ public class Exercises {
 
     public void setWorkoutPlanId(Long workoutPlanId) {
         this.workoutPlanId = workoutPlanId;
+    }
+
+    public Long getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(Long exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
+    public Long getMuscleGroupId() {
+        return muscleGroupId;
+    }
+
+    public void setMuscleGroupId(Long muscleGroupId) {
+        this.muscleGroupId = muscleGroupId;
     }
 }

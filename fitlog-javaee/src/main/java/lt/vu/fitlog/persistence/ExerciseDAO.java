@@ -17,6 +17,10 @@ public class ExerciseDAO {
         em.persist(exercise);
     }
 
+    public Exercise findOne(Long id) {
+        return em.find(Exercise.class, id);
+    }
+
     public List<Exercise> loadAll() {
         return em.createQuery("select e from Exercise e", Exercise.class).getResultList();
     }

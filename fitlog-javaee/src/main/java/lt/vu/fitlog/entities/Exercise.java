@@ -17,8 +17,8 @@ public class Exercise {
     @ManyToOne
     private WorkoutPlan workoutPlan;
 
-    @ManyToMany
-    private List<MuscleGroup> muscleGroups;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<MuscleGroup> muscleGroups = new java.util.ArrayList<>();
 
     public Exercise() {
     }

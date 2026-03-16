@@ -4,11 +4,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <title>FitLog</title>
+
 </h:head>
 <h:body>
     <h1>FitLog</h1>
     <h2>Gym Workout Tracker</h2>
 
+    <h:link outcome="muscleGroups" value="Go to Muscle Groups page" />
+
+
+<!--Create workout-->
     <h3>Add Workout Plan</h3>
     <h:form>
         <p>
@@ -22,6 +27,8 @@
         <h:commandButton value="Add" action="#{workoutPlans.createWorkoutPlan}" />
     </h:form>
 
+
+<!--Create exercise-->
     <h3>Add Exercise</h3>
     <h:form>
         <p>
@@ -43,6 +50,24 @@
         <h:commandButton value="Add Exercise" action="#{exercises.createExercise}" />
     </h:form>
 
+
+<!--Create muscle and exercise connection-->
+    <h3>Assign Muscle Group to Exercise</h3>
+    <h:form>
+        <p>
+            Exercise ID:
+            <h:inputText value="#{exercises.exerciseId}" />
+        </p>
+        <p>
+            Muscle Group ID:
+            <h:inputText value="#{exercises.muscleGroupId}" />
+        </p>
+        <h:commandButton value="Assign" action="#{exercises.assignMuscleGroupToExercise}" />
+    </h:form>
+
+    <hr/>
+
+<!--See workout plans-->
     <h3>Workout Plans</h3>
     <ui:repeat value="#{workoutPlans.allWorkoutPlans}" var="plan">
         <p>
@@ -51,12 +76,34 @@
 
         <ui:repeat value="#{plan.exercises}" var="exercise">
             <p style="margin-left: 20px;">
-                - #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
+                - ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
             </p>
+
+            <ui:repeat value="#{exercise.muscleGroups}" var="mg">
+                <p style="margin-left: 40px;">
+                    * Muscle group: #{mg.id} | #{mg.name}
+                </p>
+            </ui:repeat>
         </ui:repeat>
     </ui:repeat>
 
-    <h:link outcome="muscleGroups" value="Go to Muscle Groups page" />
+
+<!--See exercises-->
+    <h3>All Exercises</h3>
+    <ui:repeat value="#{exercises.allExercises}" var="exercise">
+        <p>
+            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
+        </p>
+    </ui:repeat>
+
+
+<!--See muscles-->
+    <h3>All Muscle Groups</h3>
+    <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
+        <p>
+            ID: #{muscleGroup.id} | #{muscleGroup.name}
+        </p>
+    </ui:repeat>
 
 </h:body>
 </html>

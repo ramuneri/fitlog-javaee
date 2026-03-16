@@ -17,6 +17,10 @@ public class MuscleGroupDAO {
         em.persist(muscleGroup);
     }
 
+    public MuscleGroup findOne(Long id) {
+        return em.find(MuscleGroup.class, id);
+    }
+
     public List<MuscleGroup> loadAll() {
         return em.createQuery("select m from MuscleGroup m", MuscleGroup.class).getResultList();
     }

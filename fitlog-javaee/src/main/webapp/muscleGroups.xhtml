@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Muscle Groups</title>
+</h:head>
+<h:body>
+    <h1>Muscle Groups</h1>
+
+    <h:link outcome="index" value="Back to Home" />
+
+    <h3>Add Muscle Group</h3>
+    <h:form>
+        <p>
+            Name:
+            <h:inputText value="#{muscleGroups.muscleGroupToCreate.name}" />
+        </p>
+        <h:commandButton value="Add Muscle Group" action="#{muscleGroups.createMuscleGroup}" />
+    </h:form>
+
+    <h3>All Muscle Groups</h3>
+    <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
+        <p>
+            ID: #{muscleGroup.id} | #{muscleGroup.name}
+        </p>
+    </ui:repeat>
+</h:body>
+</html>

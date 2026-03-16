@@ -48,6 +48,12 @@
         <p>
             ID: #{plan.id} | #{plan.name} - #{plan.difficulty}
         </p>
+
+        <ui:repeat value="#{plan.exercises}" var="exercise">
+            <p style="margin-left: 20px;">
+                - #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
+            </p>
+        </ui:repeat>
     </ui:repeat>
 </h:body>
 </html>

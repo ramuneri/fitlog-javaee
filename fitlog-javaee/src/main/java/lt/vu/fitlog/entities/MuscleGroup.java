@@ -13,7 +13,7 @@ public class MuscleGroup {
     private String name;
 
     @ManyToMany(mappedBy = "muscleGroups")
-    private List<Exercise> exercises;
+    private List<Exercise> exercises = new java.util.ArrayList<>();;
 
     public MuscleGroup() {
     }

@@ -13,8 +13,8 @@ public class WorkoutPlan {
     private String name;
     private String difficulty;
 
-    @OneToMany(mappedBy = "workoutPlan")
-    private List<Exercise> exercises;
+    @OneToMany(mappedBy = "workoutPlan", fetch = FetchType.EAGER)
+    private List<Exercise> exercises = new java.util.ArrayList<>();
 
     public WorkoutPlan() {
     }

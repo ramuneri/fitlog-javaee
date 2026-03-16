@@ -6,7 +6,7 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
     <persistence-unit name="FitlogPU" transaction-type="JTA">
-        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/FitLogDS</jta-data-source>
 
         <class>lt.vu.fitlog.entities.WorkoutPlan</class>
         <class>lt.vu.fitlog.entities.Exercise</class>

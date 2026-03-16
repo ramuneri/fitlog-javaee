@@ -8,7 +8,11 @@
 <h:body>
     <h1>Muscle Groups</h1>
 
-    <h:link outcome="index" value="Back to Home" />
+    <p><h:link outcome="index" value="Back to Home" /></p>
+    <p><h:link outcome="workoutPlans" value="Go to Workout Plans page" /></p>
+    <p><h:link outcome="exercises" value="Go to Exercises page" /></p>
+
+    <h:messages style="color: red;" />
 
     <h3>Add Muscle Group</h3>
     <h:form>
@@ -20,6 +24,10 @@
     </h:form>
 
     <h3>All Muscle Groups</h3>
+    <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
+        <p>No muscle groups yet.</p>
+    </h:panelGroup>
+
     <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
         <p>
             ID: #{muscleGroup.id} | #{muscleGroup.name}

@@ -29,7 +29,7 @@ public class WorkoutPlans {
     @Transactional
     public String createWorkoutPlan() {
         workoutPlanDAO.persist(workoutPlanToCreate);
-        return "index?faces-redirect=true";
+        return "workoutPlans?faces-redirect=true";
     }
 
     public List<WorkoutPlan> getAllWorkoutPlans() {

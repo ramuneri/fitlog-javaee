@@ -54,7 +54,7 @@ public class Exercises {
 
         exerciseToCreate.setWorkoutPlan(workoutPlan);
         exerciseDAO.persist(exerciseToCreate);
-        return "index?faces-redirect=true";
+        return "exercises?faces-redirect=true";
     }
 
     @Transactional
@@ -79,7 +79,7 @@ public class Exercises {
             muscleGroup.getExercises().add(exercise);
         }
 
-        return "index?faces-redirect=true";
+        return "exercises?faces-redirect=true";
     }
 
     public List<Exercise> getAllExercises() {

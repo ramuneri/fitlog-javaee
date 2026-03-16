@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
     <title>FitLog</title>
 </h:head>
@@ -10,127 +8,11 @@
     <h1>FitLog</h1>
     <h2>Gym Workout Tracker</h2>
 
-    <h:link outcome="muscleGroups" value="Go to Muscle Groups page" />
+    <p>Welcome to FitLog.</p>
+    <p>Select a page:</p>
 
-    <h:messages style="color: red;" />
-
-    <!--Create workout-->
-    <h3>Add Workout Plan</h3>
-    <h:form>
-        <p>
-            Name:
-            <h:inputText value="#{workoutPlans.workoutPlanToCreate.name}" />
-        </p>
-        <p>
-            Difficulty:
-            <h:inputText value="#{workoutPlans.workoutPlanToCreate.difficulty}" />
-        </p>
-        <h:commandButton value="Add" action="#{workoutPlans.createWorkoutPlan}" />
-    </h:form>
-
-    <!--Create exercise-->
-    <h3>Add Exercise</h3>
-    <h:form>
-        <p>
-            Name:
-            <h:inputText value="#{exercises.exerciseToCreate.name}" />
-        </p>
-        <p>
-            Sets:
-            <h:inputText value="#{exercises.exerciseToCreate.sets}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Reps:
-            <h:inputText value="#{exercises.exerciseToCreate.reps}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Workout Plan ID:
-            <h:inputText value="#{exercises.workoutPlanId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <h:commandButton value="Add Exercise" action="#{exercises.createExercise}" />
-    </h:form>
-
-    <!--Create muscle and exercise connection-->
-    <h3>Assign Muscle Group to Exercise</h3>
-    <h:form>
-        <p>
-            Exercise ID:
-            <h:inputText value="#{exercises.exerciseId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Muscle Group ID:
-            <h:inputText value="#{exercises.muscleGroupId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <h:commandButton value="Assign" action="#{exercises.assignMuscleGroupToExercise}" />
-    </h:form>
-
-    <hr/>
-
-    <!--See workout plans-->
-    <h3>Workout Plans</h3>
-    <h:panelGroup rendered="#{empty workoutPlans.allWorkoutPlans}">
-        <p>No workout plans yet.</p>
-    </h:panelGroup>
-
-    <ui:repeat value="#{workoutPlans.allWorkoutPlans}" var="plan">
-        <p>
-            ID: #{plan.id} | #{plan.name} - #{plan.difficulty}
-        </p>
-
-        <h:panelGroup rendered="#{empty plan.exercises}">
-            <p style="margin-left: 20px;">No exercises yet.</p>
-        </h:panelGroup>
-
-        <ui:repeat value="#{plan.exercises}" var="exercise">
-            <p style="margin-left: 20px;">
-                - ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
-            </p>
-
-            <h:panelGroup rendered="#{empty exercise.muscleGroups}">
-                <p style="margin-left: 40px;">No muscle groups assigned yet.</p>
-            </h:panelGroup>
-
-            <ui:repeat value="#{exercise.muscleGroups}" var="mg">
-                <p style="margin-left: 40px;">
-                    * Muscle group ID: #{mg.id} | #{mg.name}
-                </p>
-            </ui:repeat>
-        </ui:repeat>
-    </ui:repeat>
-
-    <!--See exercises-->
-    <h3>All Exercises</h3>
-    <h:panelGroup rendered="#{empty exercises.allExercises}">
-        <p>No exercises yet.</p>
-    </h:panelGroup>
-
-    <ui:repeat value="#{exercises.allExercises}" var="exercise">
-        <p>
-            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
-        </p>
-    </ui:repeat>
-
-    <!--See muscles-->
-    <h3>All Muscle Groups</h3>
-    <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
-        <p>No muscle groups yet.</p>
-    </h:panelGroup>
-
-    <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
-        <p>
-            ID: #{muscleGroup.id} | #{muscleGroup.name}
-        </p>
-    </ui:repeat>
-
+    <p><h:link outcome="workoutPlans" value="Go to Workout Plans page" /></p>
+    <p><h:link outcome="exercises" value="Go to Exercises page" /></p>
+    <p><h:link outcome="muscleGroups" value="Go to Muscle Groups page" /></p>
 </h:body>
 </html>

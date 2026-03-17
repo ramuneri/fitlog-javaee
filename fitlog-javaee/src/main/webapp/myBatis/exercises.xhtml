@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>MyBatis Exercises</title>
+</h:head>
+<h:body>
+    <h1>MyBatis Exercises</h1>
+
+    <p><h:link outcome="/index" value="Back to Home" /></p>
+
+    <h3>All Exercises loaded with MyBatis</h3>
+
+    <h:panelGroup rendered="#{empty exercisesMyBatis.allExercises}">
+        <p>No exercises found.</p>
+    </h:panelGroup>
+
+    <ui:repeat value="#{exercisesMyBatis.allExercises}" var="exercise">
+        <p>
+            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps) | WorkoutPlan ID: #{exercise.workoutPlanId}
+        </p>
+    </ui:repeat>
+</h:body>
+</html>

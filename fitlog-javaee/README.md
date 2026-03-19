@@ -1,7 +1,9 @@
 TODO:
 - Just create an exercise without assigning it anywhere
-- Fix DB (random workout index 1 tada 33???)
-- CDI / @Inject ???
+- @Inject ???
+- CDI/use case beans??
+- when class becomes CDI bean?
+- MyBatis declarative transactions?
 
 
 

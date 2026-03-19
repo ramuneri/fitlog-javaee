@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>MyBatis Exercises</title>
 </h:head>
@@ -9,6 +10,36 @@
     <h1>MyBatis Exercises</h1>
 
     <p><h:link outcome="/index" value="Back to Home" /></p>
+
+    <h:messages style="color: red;" />
+
+    <h3>Add Exercise with MyBatis</h3>
+    <h:form>
+        <p>
+            Name:
+            <h:inputText value="#{exercisesMyBatis.exerciseToCreate.name}" />
+        </p>
+        <p>
+            Sets:
+            <h:inputText value="#{exercisesMyBatis.exerciseToCreate.sets}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            Reps:
+            <h:inputText value="#{exercisesMyBatis.exerciseToCreate.reps}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            Workout Plan ID:
+            <h:inputText value="#{exercisesMyBatis.workoutPlanId}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+
+        <h:commandButton value="Add Exercise" action="#{exercisesMyBatis.createExercise}" />
+    </h:form>
 
     <h3>All Exercises loaded with MyBatis</h3>
 

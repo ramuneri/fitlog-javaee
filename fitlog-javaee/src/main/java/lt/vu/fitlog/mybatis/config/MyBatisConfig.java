@@ -1,9 +1,11 @@
 package lt.vu.fitlog.mybatis.config;
 
+import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.mybatis.cdi.SessionFactoryProvider;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -38,6 +40,8 @@ public class MyBatisConfig {
     }
 
     @Produces
+    @ApplicationScoped
+    @SessionFactoryProvider
     public SqlSessionFactory produceSqlSessionFactory() {
         return sqlSessionFactory;
     }

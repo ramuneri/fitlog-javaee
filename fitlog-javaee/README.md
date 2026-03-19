@@ -1,11 +1,7 @@
 TODO:
-- Just create an exercise without assigning it anywhere
-- @Inject ???
 - CDI/use case beans??
 - when class becomes CDI bean?
 - MyBatis declarative transactions?
-
-
 
 ### Datasource
 - A server-side database connection configuration.

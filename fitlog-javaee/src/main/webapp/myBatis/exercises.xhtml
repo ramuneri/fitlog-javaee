@@ -52,5 +52,35 @@
             ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps) | WorkoutPlan ID: #{exercise.workoutPlanId}
         </p>
     </ui:repeat>
+
+    <hr/>
+
+    <h3>Edit Existing Exercise with MyBatis</h3>
+    <h:form>
+        <p>
+            Exercise ID:
+            <h:inputText value="#{exercisesMyBatis.exerciseToUpdate.id}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            New Name:
+            <h:inputText value="#{exercisesMyBatis.exerciseToUpdate.name}" />
+        </p>
+        <p>
+            New Sets:
+            <h:inputText value="#{exercisesMyBatis.exerciseToUpdate.sets}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            New Reps:
+            <h:inputText value="#{exercisesMyBatis.exerciseToUpdate.reps}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+
+        <h:commandButton value="Update Exercise" action="#{exercisesMyBatis.updateExercise}" />
+    </h:form>
 </h:body>
 </html>

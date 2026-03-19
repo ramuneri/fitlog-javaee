@@ -27,6 +27,8 @@ public class ExercisesMyBatis {
 
     private Exercise exerciseToCreate = new Exercise();
 
+    private Exercise exerciseToUpdate = new Exercise();
+
     private Long workoutPlanId;
 
     @PostConstruct
@@ -48,6 +50,38 @@ public class ExercisesMyBatis {
         return "/myBatis/exercises?faces-redirect=true";
     }
 
+    @Transactional
+    public String updateExercise() {
+        if (exerciseToUpdate.getId() == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise ID is required.", null));
+            return null;
+        }
+
+        Exercise existingExercise = exerciseMapper.findOne(exerciseToUpdate.getId());
+
+        if (existingExercise == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise with this ID does not exist.", null));
+            return null;
+        }
+
+        if (exerciseToUpdate.getName() != null && !exerciseToUpdate.getName().trim().isEmpty()) {
+            existingExercise.setName(exerciseToUpdate.getName());
+        }
+
+        if (exerciseToUpdate.getSets() != null) {
+            existingExercise.setSets(exerciseToUpdate.getSets());
+        }
+
+        if (exerciseToUpdate.getReps() != null) {
+            existingExercise.setReps(exerciseToUpdate.getReps());
+        }
+
+        exerciseMapper.update(existingExercise);
+        return "/myBatis/exercises?faces-redirect=true";
+    }
+
     public List<Exercise> getAllExercises() {
         return allExercises;
     }
@@ -58,6 +92,14 @@ public class ExercisesMyBatis {
 
     public void setExerciseToCreate(Exercise exerciseToCreate) {
         this.exerciseToCreate = exerciseToCreate;
+    }
+
+    public Exercise getExerciseToUpdate() {
+        return exerciseToUpdate;
+    }
+
+    public void setExerciseToUpdate(Exercise exerciseToUpdate) {
+        this.exerciseToUpdate = exerciseToUpdate;
     }
 
     public Long getWorkoutPlanId() {

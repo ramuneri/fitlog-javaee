@@ -26,6 +26,4 @@ public interface ExerciseMapper {
 
     @Update("UPDATE EXERCISE SET NAME = #{name}, SETS = #{sets}, REPS = #{reps} WHERE ID = #{id}")
     int update(Exercise exercise);
-
-
 }

@@ -59,6 +59,11 @@ This project was developed as part of a university assignment to demonstrate:
 - CDI and layered architecture
 
 
+## DB
+
+![img_1.png](img_1.png)
+
+
 TODO:
 - MyBatis for all 
 - Edit component via JPA

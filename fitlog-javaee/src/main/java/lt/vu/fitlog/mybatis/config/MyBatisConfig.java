@@ -28,6 +28,7 @@ public class MyBatisConfig {
 
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.ExerciseMapper.class);
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper.class);
+        configuration.addMapper(lt.vu.fitlog.mybatis.dao.MuscleGroupMapper.class);
 
         Environment environment = new Environment(
                 "development",

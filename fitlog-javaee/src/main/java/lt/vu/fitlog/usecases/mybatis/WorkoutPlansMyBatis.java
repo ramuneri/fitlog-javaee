@@ -1,0 +1,50 @@
+package lt.vu.fitlog.usecases.mybatis;
+
+import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
+import lt.vu.fitlog.mybatis.model.WorkoutPlan;
+import org.mybatis.cdi.Transactional;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.List;
+
+@Named
+@RequestScoped
+public class WorkoutPlansMyBatis {
+
+    @Inject
+    private WorkoutPlanMapper workoutPlanMapper;
+
+    private List<WorkoutPlan> allWorkoutPlans;
+
+    private WorkoutPlan workoutPlanToCreate = new WorkoutPlan();
+
+    @PostConstruct
+    public void init() {
+        allWorkoutPlans = workoutPlanMapper.selectAll();
+    }
+
+    @Transactional
+    public String createWorkoutPlan() {
+        workoutPlanMapper.insert(workoutPlanToCreate);
+        return "/myBatis/workoutPlans?faces-redirect=true";
+    }
+
+    public List<WorkoutPlan> getAllWorkoutPlans() {
+        return allWorkoutPlans;
+    }
+
+    public void setAllWorkoutPlans(List<WorkoutPlan> allWorkoutPlans) {
+        this.allWorkoutPlans = allWorkoutPlans;
+    }
+
+    public WorkoutPlan getWorkoutPlanToCreate() {
+        return workoutPlanToCreate;
+    }
+
+    public void setWorkoutPlanToCreate(WorkoutPlan workoutPlanToCreate) {
+        this.workoutPlanToCreate = workoutPlanToCreate;
+    }
+}

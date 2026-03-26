@@ -1,6 +1,6 @@
 package lt.vu.fitlog.mybatis.config;
 
-import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
+import lt.vu.fitlog.mybatis.dao.*;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -27,6 +27,7 @@ public class MyBatisConfig {
                 new org.apache.ibatis.session.Configuration();
 
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.ExerciseMapper.class);
+        configuration.addMapper(lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper.class);
 
         Environment environment = new Environment(
                 "development",

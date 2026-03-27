@@ -8,7 +8,7 @@
 </h:head>
 
 <h:body>
-    <h1>Exercises</h1>
+    <h1>Exercises with JPA</h1>
 
     <p><h:link outcome="index" value="Back to Home" /></p>
 
@@ -75,6 +75,36 @@
             ID: #{muscleGroup.id} | #{muscleGroup.name}
         </p>
     </ui:repeat>
+
+    <hr/>
+
+    <h3>Edit Existing Exercise with JPA</h3>
+    <h:form>
+        <p>
+            Exercise ID:
+            <h:inputText value="#{exercises.exerciseToUpdate.id}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            New Name:
+            <h:inputText value="#{exercises.exerciseToUpdate.name}" />
+        </p>
+        <p>
+            New Sets:
+            <h:inputText value="#{exercises.exerciseToUpdate.sets}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            New Reps:
+            <h:inputText value="#{exercises.exerciseToUpdate.reps}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+
+        <h:commandButton value="Update Exercise" action="#{exercises.updateExercise}" />
+    </h:form>
 
     <hr/>
 

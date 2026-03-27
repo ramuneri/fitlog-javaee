@@ -33,6 +33,8 @@ public class Exercises {
 
     private Exercise exerciseToCreate = new Exercise();
 
+    private Exercise exerciseToUpdate = new Exercise();
+
     private Long workoutPlanId;
     private Long exerciseId;
     private Long muscleGroupId;
@@ -82,6 +84,39 @@ public class Exercises {
         return "exercises?faces-redirect=true";
     }
 
+
+    @Transactional
+    public String updateExercise() {
+        if (exerciseToUpdate.getId() == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise ID is required.", null));
+            return null;
+        }
+
+        Exercise existingExercise = exerciseDAO.findOne(exerciseToUpdate.getId());
+
+        if (existingExercise == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise with this ID does not exist.", null));
+            return null;
+        }
+
+        if (exerciseToUpdate.getName() != null && !exerciseToUpdate.getName().trim().isEmpty()) {
+            existingExercise.setName(exerciseToUpdate.getName());
+        }
+
+        if (exerciseToUpdate.getSets() != null) {
+            existingExercise.setSets(exerciseToUpdate.getSets());
+        }
+
+        if (exerciseToUpdate.getReps() != null) {
+            existingExercise.setReps(exerciseToUpdate.getReps());
+        }
+
+        return "/exercises?faces-redirect=true";
+    }
+
+
     public List<Exercise> getAllExercises() {
         return allExercises;
     }
@@ -116,5 +151,13 @@ public class Exercises {
 
     public void setMuscleGroupId(Long muscleGroupId) {
         this.muscleGroupId = muscleGroupId;
+    }
+
+    public Exercise getExerciseToUpdate() {
+        return exerciseToUpdate;
+    }
+
+    public void setExerciseToUpdate(Exercise exerciseToUpdate) {
+        this.exerciseToUpdate = exerciseToUpdate;
     }
 }

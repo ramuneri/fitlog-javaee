@@ -1,12 +1,13 @@
 package lt.vu.fitlog.mybatis.dao;
 
 import lt.vu.fitlog.mybatis.model.Exercise;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.mybatis.cdi.Mapper;
-import org.mybatis.cdi.SessionFactoryProvider;
 
 import java.util.List;
 
@@ -26,4 +27,19 @@ public interface ExerciseMapper {
 
     @Update("UPDATE EXERCISE SET NAME = #{name}, SETS = #{sets}, REPS = #{reps} WHERE ID = #{id}")
     int update(Exercise exercise);
+
+    @Insert("INSERT INTO EXERCISE_MUSCLEGROUP (EXERCISES_ID, MUSCLEGROUPS_ID) " +
+            "VALUES (#{exerciseId}, #{muscleGroupId})")
+    int assignMuscleGroupToExercise(@Param("exerciseId") Long exerciseId,
+                                    @Param("muscleGroupId") Long muscleGroupId);
+
+    @Delete("DELETE FROM EXERCISE_MUSCLEGROUP WHERE EXERCISES_ID = #{exerciseId} AND MUSCLEGROUPS_ID = #{muscleGroupId}")
+    int removeMuscleGroupFromExercise(@Param("exerciseId") Long exerciseId,
+                                      @Param("muscleGroupId") Long muscleGroupId);
+
+    @Select("SELECT MG.ID, MG.NAME " +
+            "FROM MUSCLEGROUP MG " +
+            "JOIN EXERCISE_MUSCLEGROUP EMG ON MG.ID = EMG.MUSCLEGROUPS_ID " +
+            "WHERE EMG.EXERCISES_ID = #{exerciseId}")
+    List<lt.vu.fitlog.mybatis.model.MuscleGroup> findMuscleGroupsByExerciseId(Long exerciseId);
 }

@@ -1,3 +1,13 @@
+TODO:
+- MyBatis for all
+- Edit component via JPA
+- CDI/use case beans??
+- when class becomes CDI bean?
+- MyBatis declarative transactions?
+
+- Edit exercise with JPA as well
+
+
 # FitLog – Java EE Gym Workout Tracker
 
 FitLog is a university project built with Java EE that allows users to create and manage gym workout plans, exercises, and muscle groups.
@@ -63,10 +73,3 @@ This project was developed as part of a university assignment to demonstrate:
 
 ![img_1.png](img_1.png)
 
-
-TODO:
-- MyBatis for all 
-- Edit component via JPA
-- CDI/use case beans??
-- when class becomes CDI bean?
-- MyBatis declarative transactions?

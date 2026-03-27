@@ -1,8 +1,9 @@
 package lt.vu.fitlog.usecases.mybatis;
 
 import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
+import lt.vu.fitlog.mybatis.dao.MuscleGroupMapper;
+import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
 import lt.vu.fitlog.mybatis.model.Exercise;
-import lt.vu.fitlog.persistence.WorkoutPlanDAO;
 import org.mybatis.cdi.Transactional;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,10 @@ public class ExercisesMyBatis {
     private ExerciseMapper exerciseMapper;
 
     @Inject
-    private WorkoutPlanDAO workoutPlanDAO;
+    private WorkoutPlanMapper workoutPlanMapper;
+
+    @Inject
+    private MuscleGroupMapper muscleGroupMapper;
 
     private List<Exercise> allExercises;
 
@@ -31,14 +35,30 @@ public class ExercisesMyBatis {
 
     private Long workoutPlanId;
 
+    private Long exerciseIdForMuscleGroupAssignment;
+
+    private Long muscleGroupIdForAssignment;
+
     @PostConstruct
     public void init() {
         allExercises = exerciseMapper.selectAll();
+
+        for (Exercise exercise : allExercises) {
+            exercise.setMuscleGroups(
+                    exerciseMapper.findMuscleGroupsByExerciseId(exercise.getId())
+            );
+        }
     }
 
     @Transactional
     public String createExercise() {
-        if (workoutPlanDAO.findOne(workoutPlanId) == null) {
+        if (workoutPlanId == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Workout Plan ID is required.", null));
+            return null;
+        }
+
+        if (workoutPlanMapper.findOne(workoutPlanId) == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Workout Plan ID does not exist.", null));
             return null;
@@ -82,8 +102,48 @@ public class ExercisesMyBatis {
         return "/myBatis/exercises?faces-redirect=true";
     }
 
+    @Transactional
+    public String assignMuscleGroupToExercise() {
+        if (exerciseIdForMuscleGroupAssignment == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise ID is required.", null));
+            return null;
+        }
+
+        if (muscleGroupIdForAssignment == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Muscle Group ID is required.", null));
+            return null;
+        }
+
+        Exercise existingExercise = exerciseMapper.findOne(exerciseIdForMuscleGroupAssignment);
+
+        if (existingExercise == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exercise ID does not exist.", null));
+            return null;
+        }
+
+        if (muscleGroupMapper.findOne(muscleGroupIdForAssignment) == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Muscle Group ID does not exist.", null));
+            return null;
+        }
+
+        exerciseMapper.assignMuscleGroupToExercise(
+                exerciseIdForMuscleGroupAssignment,
+                muscleGroupIdForAssignment
+        );
+
+        return "/myBatis/exercises?faces-redirect=true";
+    }
+
     public List<Exercise> getAllExercises() {
         return allExercises;
+    }
+
+    public void setAllExercises(List<Exercise> allExercises) {
+        this.allExercises = allExercises;
     }
 
     public Exercise getExerciseToCreate() {
@@ -108,5 +168,21 @@ public class ExercisesMyBatis {
 
     public void setWorkoutPlanId(Long workoutPlanId) {
         this.workoutPlanId = workoutPlanId;
+    }
+
+    public Long getExerciseIdForMuscleGroupAssignment() {
+        return exerciseIdForMuscleGroupAssignment;
+    }
+
+    public void setExerciseIdForMuscleGroupAssignment(Long exerciseIdForMuscleGroupAssignment) {
+        this.exerciseIdForMuscleGroupAssignment = exerciseIdForMuscleGroupAssignment;
+    }
+
+    public Long getMuscleGroupIdForAssignment() {
+        return muscleGroupIdForAssignment;
+    }
+
+    public void setMuscleGroupIdForAssignment(Long muscleGroupIdForAssignment) {
+        this.muscleGroupIdForAssignment = muscleGroupIdForAssignment;
     }
 }

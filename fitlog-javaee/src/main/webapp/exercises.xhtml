@@ -6,16 +6,15 @@
 <h:head>
     <title>Exercises</title>
 </h:head>
+
 <h:body>
     <h1>Exercises</h1>
 
     <p><h:link outcome="index" value="Back to Home" /></p>
-    <p><h:link outcome="workoutPlans" value="Go to Workout Plans page" /></p>
-    <p><h:link outcome="muscleGroups" value="Go to Muscle Groups page" /></p>
 
     <h:messages style="color: red;" />
 
-    <h3>Add Exercise</h3>
+    <h3>Add Exercise with JPA</h3>
     <h:form>
         <p>
             Name:
@@ -42,7 +41,10 @@
         <h:commandButton value="Add Exercise" action="#{exercises.createExercise}" />
     </h:form>
 
-    <h3>All Exercises</h3>
+    <hr/>
+
+    <h3>All Exercises loaded with JPA</h3>
+
     <h:panelGroup rendered="#{empty exercises.allExercises}">
         <p>No exercises yet.</p>
     </h:panelGroup>
@@ -73,6 +75,8 @@
             ID: #{muscleGroup.id} | #{muscleGroup.name}
         </p>
     </ui:repeat>
+
+    <hr/>
 
     <h3>Assign Muscle Group to Exercise</h3>
     <h:form>

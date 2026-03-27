@@ -1,12 +1,14 @@
 package lt.vu.fitlog.mybatis.model;
 
-public class Exercise {
+import java.util.List;
 
+public class Exercise {
     private Long id;
     private String name;
     private Integer sets;
     private Integer reps;
     private Long workoutPlanId;
+    private List<MuscleGroup> muscleGroups;
 
     public Long getId() {
         return id;
@@ -46,5 +48,13 @@ public class Exercise {
 
     public void setWorkoutPlanId(Long workoutPlanId) {
         this.workoutPlanId = workoutPlanId;
+    }
+
+    public List<MuscleGroup> getMuscleGroups() {
+        return muscleGroups;
+    }
+
+    public void setMuscleGroups(List<MuscleGroup> muscleGroups) {
+        this.muscleGroups = muscleGroups;
     }
 }

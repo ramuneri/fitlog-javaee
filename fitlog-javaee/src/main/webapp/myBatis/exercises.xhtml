@@ -6,6 +6,7 @@
 <h:head>
     <title>MyBatis Exercises</title>
 </h:head>
+
 <h:body>
     <h1>MyBatis Exercises</h1>
 
@@ -41,15 +42,39 @@
         <h:commandButton value="Add Exercise" action="#{exercisesMyBatis.createExercise}" />
     </h:form>
 
+    <hr/>
+
     <h3>All Exercises loaded with MyBatis</h3>
 
     <h:panelGroup rendered="#{empty exercisesMyBatis.allExercises}">
-        <p>No exercises found.</p>
+        <p>No exercises yet.</p>
     </h:panelGroup>
 
     <ui:repeat value="#{exercisesMyBatis.allExercises}" var="exercise">
         <p>
-            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps) | WorkoutPlan ID: #{exercise.workoutPlanId}
+            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
+        </p>
+
+        <h:panelGroup rendered="#{empty exercise.muscleGroups}">
+            <p style="margin-left: 20px;">No muscle groups assigned yet.</p>
+        </h:panelGroup>
+
+        <ui:repeat value="#{exercise.muscleGroups}" var="muscleGroup">
+            <p style="margin-left: 20px;">
+                - Muscle group ID: #{muscleGroup.id} | #{muscleGroup.name}
+            </p>
+        </ui:repeat>
+    </ui:repeat>
+
+
+    <h3>All Muscle Groups</h3>
+    <h:panelGroup rendered="#{empty muscleGroupsMyBatis.allMuscleGroups}">
+        <p>No muscle groups yet.</p>
+    </h:panelGroup>
+
+    <ui:repeat value="#{muscleGroupsMyBatis.allMuscleGroups}" var="muscleGroup">
+        <p>
+            ID: #{muscleGroup.id} | #{muscleGroup.name}
         </p>
     </ui:repeat>
 
@@ -82,5 +107,26 @@
 
         <h:commandButton value="Update Exercise" action="#{exercisesMyBatis.updateExercise}" />
     </h:form>
+
+    <hr/>
+
+    <h3>Assign Muscle Group to Exercise</h3>
+    <h:form>
+        <p>
+            Exercise ID:
+            <h:inputText value="#{exercisesMyBatis.exerciseIdForMuscleGroupAssignment}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <p>
+            Muscle Group ID:
+            <h:inputText value="#{exercisesMyBatis.muscleGroupIdForAssignment}">
+                <f:passThroughAttribute name="type" value="number"/>
+            </h:inputText>
+        </p>
+        <h:commandButton value="Assign Muscle Group"
+                         action="#{exercisesMyBatis.assignMuscleGroupToExercise}" />
+    </h:form>
+
 </h:body>
 </html>

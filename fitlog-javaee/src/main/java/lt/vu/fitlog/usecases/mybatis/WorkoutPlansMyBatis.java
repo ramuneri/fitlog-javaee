@@ -1,6 +1,8 @@
 package lt.vu.fitlog.usecases.mybatis;
 
+import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
+import lt.vu.fitlog.mybatis.model.Exercise;
 import lt.vu.fitlog.mybatis.model.WorkoutPlan;
 import org.mybatis.cdi.Transactional;
 
@@ -17,6 +19,9 @@ public class WorkoutPlansMyBatis {
     @Inject
     private WorkoutPlanMapper workoutPlanMapper;
 
+    @Inject
+    private ExerciseMapper exerciseMapper;
+
     private List<WorkoutPlan> allWorkoutPlans;
 
     private WorkoutPlan workoutPlanToCreate = new WorkoutPlan();
@@ -24,6 +29,18 @@ public class WorkoutPlansMyBatis {
     @PostConstruct
     public void init() {
         allWorkoutPlans = workoutPlanMapper.selectAll();
+
+        for (WorkoutPlan plan : allWorkoutPlans) {
+            List<Exercise> exercises = workoutPlanMapper.findExercisesByWorkoutPlanId(plan.getId());
+
+            for (Exercise exercise : exercises) {
+                exercise.setMuscleGroups(
+                        exerciseMapper.findMuscleGroupsByExerciseId(exercise.getId())
+                );
+            }
+
+            plan.setExercises(exercises);
+        }
     }
 
     @Transactional

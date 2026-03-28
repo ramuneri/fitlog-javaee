@@ -38,6 +38,26 @@
         <p>
             ID: #{plan.id} | #{plan.name} - #{plan.difficulty}
         </p>
+
+        <h:panelGroup rendered="#{empty plan.exercises}">
+            <p style="margin-left: 20px;">No exercises yet.</p>
+        </h:panelGroup>
+
+        <ui:repeat value="#{plan.exercises}" var="exercise">
+            <p style="margin-left: 20px;">
+                - ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
+            </p>
+
+            <h:panelGroup rendered="#{empty exercise.muscleGroups}">
+                <p style="margin-left: 40px;">No muscle groups assigned yet.</p>
+            </h:panelGroup>
+
+            <ui:repeat value="#{exercise.muscleGroups}" var="mg">
+                <p style="margin-left: 40px;">
+                    * Muscle group ID: #{mg.id} | #{mg.name}
+                </p>
+            </ui:repeat>
+        </ui:repeat>
     </ui:repeat>
 </h:body>
 </html>

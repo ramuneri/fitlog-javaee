@@ -1,9 +1,12 @@
 package lt.vu.fitlog.mybatis.model;
 
+import java.util.List;
+
 public class WorkoutPlan {
     private Long id;
     private String name;
     private String difficulty;
+    private List<Exercise> exercises;
 
     public Long getId() {
         return id;
@@ -27,5 +30,13 @@ public class WorkoutPlan {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

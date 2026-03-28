@@ -1,6 +1,7 @@
 package lt.vu.fitlog.mybatis.dao;
 
 import lt.vu.fitlog.mybatis.model.WorkoutPlan;
+import lt.vu.fitlog.mybatis.model.Exercise;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -20,4 +21,8 @@ public interface WorkoutPlanMapper {
     @Insert("INSERT INTO WORKOUTPLAN (NAME, DIFFICULTY) VALUES (#{name}, #{difficulty})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(WorkoutPlan workoutPlan);
+
+    @Select("SELECT ID, NAME, SETS, REPS, WORKOUTPLAN_ID AS workoutPlanId " +
+            "FROM EXERCISE WHERE WORKOUTPLAN_ID = #{workoutPlanId}")
+    List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId);
 }

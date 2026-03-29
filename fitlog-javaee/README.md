@@ -7,6 +7,7 @@ TODO:
 
 - Edit exercise with JPA as well
 - Do not allow to add the same muscle to an exercise
+- Show existing workouts where you create an exercise
 
 
 # FitLog – Java EE Gym Workout Tracker

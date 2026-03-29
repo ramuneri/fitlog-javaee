@@ -2,26 +2,13 @@ package lt.vu.fitlog.persistence;
 
 import lt.vu.fitlog.entities.Exercise;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
 import java.util.List;
 
-@ApplicationScoped
-public class ExerciseDAO {
+public interface ExerciseDAO {
 
-    @PersistenceContext
-    private EntityManager em;
+    void persist(Exercise exercise);
 
-    public void persist(Exercise exercise) {
-        em.persist(exercise);
-    }
+    List<Exercise> loadAll();
 
-    public Exercise findOne(Long id) {
-        return em.find(Exercise.class, id);
-    }
-
-    public List<Exercise> loadAll() {
-        return em.createQuery("select e from Exercise e", Exercise.class).getResultList();
-    }
+    Exercise findOne(Long id);
 }

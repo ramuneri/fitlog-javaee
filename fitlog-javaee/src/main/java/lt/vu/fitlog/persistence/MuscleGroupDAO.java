@@ -2,26 +2,13 @@ package lt.vu.fitlog.persistence;
 
 import lt.vu.fitlog.entities.MuscleGroup;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
 import java.util.List;
 
-@ApplicationScoped
-public class MuscleGroupDAO {
+public interface MuscleGroupDAO {
 
-    @PersistenceContext
-    private EntityManager em;
+    void persist(MuscleGroup muscleGroup);
 
-    public void persist(MuscleGroup muscleGroup) {
-        em.persist(muscleGroup);
-    }
+    List<MuscleGroup> loadAll();
 
-    public MuscleGroup findOne(Long id) {
-        return em.find(MuscleGroup.class, id);
-    }
-
-    public List<MuscleGroup> loadAll() {
-        return em.createQuery("select m from MuscleGroup m", MuscleGroup.class).getResultList();
-    }
+    MuscleGroup findOne(Long id);
 }

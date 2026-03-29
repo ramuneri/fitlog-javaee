@@ -9,121 +9,142 @@
 </h:head>
 
 <h:body>
-    <h1>Exercises with JPA</h1>
+    <h1>Exercises</h1>
 
     <p><h:link outcome="index" value="Back to Home" /></p>
 
     <h:messages style="color: red;" />
 
-    <h3>Add Exercise with JPA</h3>
-    <h:form>
-        <p>
-            Name:
-            <h:inputText value="#{exercises.exerciseToCreate.name}" />
-        </p>
-        <p>
-            Sets:
-            <h:inputText value="#{exercises.exerciseToCreate.sets}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Reps:
-            <h:inputText value="#{exercises.exerciseToCreate.reps}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Workout Plan ID:
-            <h:inputText value="#{exercises.workoutPlanId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <h:commandButton value="Add Exercise" action="#{exercises.createExercise}" />
-    </h:form>
+    <section>
+        <h2>Add New Exercise</h2>
+        <h:form>
+            <p>
+                <label>Name</label><br/>
+                <h:inputText value="#{exercises.exerciseToCreate.name}" />
+            </p>
+            <p>
+                <label>Sets</label><br/>
+                <h:inputText value="#{exercises.exerciseToCreate.sets}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>Repetitions</label><br/>
+                <h:inputText value="#{exercises.exerciseToCreate.reps}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>Workout Plan ID</label><br/>
+                <h:inputText value="#{exercises.workoutPlanId}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <h:commandButton value="Save Exercise" action="#{exercises.createExercise}" />
+        </h:form>
+    </section>
 
     <hr/>
 
-    <h3>All Exercises loaded with JPA</h3>
+    <section>
+        <h2>Exercise List</h2>
 
-    <h:panelGroup rendered="#{empty exercises.allExercises}">
-        <p>No exercises yet.</p>
-    </h:panelGroup>
-
-    <ui:repeat value="#{exercises.allExercises}" var="exercise">
-        <p>
-            ID: #{exercise.id} | #{exercise.name} (#{exercise.sets} sets x #{exercise.reps} reps)
-        </p>
-
-        <h:panelGroup rendered="#{empty exercise.muscleGroups}">
-            <p style="margin-left: 20px;">No muscle groups assigned yet.</p>
+        <h:panelGroup rendered="#{empty exercises.allExercises}">
+            <p>No exercises found.</p>
         </h:panelGroup>
 
-        <ui:repeat value="#{exercise.muscleGroups}" var="muscleGroup">
-            <p style="margin-left: 20px;">
-                - Muscle group ID: #{muscleGroup.id} | #{muscleGroup.name}
+        <ui:repeat value="#{exercises.allExercises}" var="exercise">
+            <article>
+                <p>
+                    <strong>ID:</strong> #{exercise.id}<br/>
+                    <strong>Name:</strong> #{exercise.name}<br/>
+                    <strong>Sets:</strong> #{exercise.sets}<br/>
+                    <strong>Repetitions:</strong> #{exercise.reps}
+                </p>
+
+                <p><strong>Target Muscle Groups:</strong></p>
+
+                <h:panelGroup rendered="#{empty exercise.muscleGroups}">
+                    <p>No muscle groups assigned yet.</p>
+                </h:panelGroup>
+
+                <ui:repeat value="#{exercise.muscleGroups}" var="muscleGroup">
+                    <p>
+                        - ID: #{muscleGroup.id} | #{muscleGroup.name}
+                    </p>
+                </ui:repeat>
+
+                <hr/>
+            </article>
+        </ui:repeat>
+    </section>
+
+    <section>
+        <h2>Available Muscle Groups</h2>
+
+        <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
+            <p>No muscle groups found.</p>
+        </h:panelGroup>
+
+        <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
+            <p>
+                <strong>ID:</strong> #{muscleGroup.id} |
+                <strong>Name:</strong> #{muscleGroup.name}
             </p>
         </ui:repeat>
-    </ui:repeat>
-
-    <h3>All Muscle Groups</h3>
-    <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
-        <p>No muscle groups yet.</p>
-    </h:panelGroup>
-
-    <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
-        <p>
-            ID: #{muscleGroup.id} | #{muscleGroup.name}
-        </p>
-    </ui:repeat>
+    </section>
 
     <hr/>
 
-    <h3>Edit Existing Exercise with JPA</h3>
-    <h:form>
-        <p>
-            Exercise ID:
-            <h:inputText value="#{exercises.exerciseToUpdate.id}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            New Name:
-            <h:inputText value="#{exercises.exerciseToUpdate.name}" />
-        </p>
-        <p>
-            New Sets:
-            <h:inputText value="#{exercises.exerciseToUpdate.sets}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            New Reps:
-            <h:inputText value="#{exercises.exerciseToUpdate.reps}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
+    <section>
+        <h2>Update Exercise</h2>
+        <h:form>
+            <p>
+                <label>Exercise ID</label><br/>
+                <h:inputText value="#{exercises.exerciseToUpdate.id}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>New Name</label><br/>
+                <h:inputText value="#{exercises.exerciseToUpdate.name}" />
+            </p>
+            <p>
+                <label>New Sets</label><br/>
+                <h:inputText value="#{exercises.exerciseToUpdate.sets}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>New Repetitions</label><br/>
+                <h:inputText value="#{exercises.exerciseToUpdate.reps}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
 
-        <h:commandButton value="Update Exercise" action="#{exercises.updateExercise}" />
-    </h:form>
+            <h:commandButton value="Update Exercise" action="#{exercises.updateExercise}" />
+        </h:form>
+    </section>
 
     <hr/>
 
-    <h3>Assign Muscle Group to Exercise</h3>
-    <h:form>
-        <p>
-            Exercise ID:
-            <h:inputText value="#{exercises.exerciseId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <p>
-            Muscle Group ID:
-            <h:inputText value="#{exercises.muscleGroupId}">
-                <f:passThroughAttribute name="type" value="number"/>
-            </h:inputText>
-        </p>
-        <h:commandButton value="Assign" action="#{exercises.assignMuscleGroupToExercise}" />
-    </h:form>
+    <section>
+        <h2>Assign Muscle Group</h2>
+        <h:form>
+            <p>
+                <label>Exercise ID</label><br/>
+                <h:inputText value="#{exercises.exerciseId}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>Muscle Group ID</label><br/>
+                <h:inputText value="#{exercises.muscleGroupId}">
+                    <f:passThroughAttribute name="type" value="number"/>
+                </h:inputText>
+            </p>
+            <h:commandButton value="Assign Muscle Group" action="#{exercises.assignMuscleGroupToExercise}" />
+        </h:form>
+    </section>
 </h:body>
 </html>

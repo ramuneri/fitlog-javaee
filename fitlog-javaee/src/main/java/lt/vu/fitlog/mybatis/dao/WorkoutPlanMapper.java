@@ -1,7 +1,7 @@
 package lt.vu.fitlog.mybatis.dao;
 
-import lt.vu.fitlog.entities.WorkoutPlan;
 import lt.vu.fitlog.entities.Exercise;
+import lt.vu.fitlog.entities.WorkoutPlan;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;

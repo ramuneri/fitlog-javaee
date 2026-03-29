@@ -7,19 +7,14 @@
 </h:head>
 <h:body>
     <h1>FitLog</h1>
-    <h2>Gym Workout Tracker</h2>
+    <p><strong>Workout tracking system</strong></p>
 
-    <p>Welcome to FitLog.</p>
-    <p>Select a page:</p>
+    <p>Welcome to FitLog. Choose a page to manage your workout data.</p>
 
-    <p><h:link outcome="workoutPlans" value="Go to Workout Plans page" /></p>
-    <p><h:link outcome="exercises" value="Go to Exercises page" /></p>
-    <p><h:link outcome="muscleGroups" value="Go to Muscle Groups page" /></p>
-
-    <br/>
-
-    <p><h:link outcome="/myBatis/workoutPlans" value="Go to MyBatis Workout Plans page" /></p>
-    <p><h:link outcome="/myBatis/exercises" value="Go to MyBatis Exercises page" /></p>
-    <p><h:link outcome="/myBatis/muscleGroups" value="Go to MyBatis Muscle Groups page" /></p>
+    <nav>
+        <p><h:link outcome="workoutPlans" value="Workout Plans" /></p>
+        <p><h:link outcome="exercises" value="Exercises" /></p>
+        <p><h:link outcome="muscleGroups" value="Muscle Groups" /></p>
+    </nav>
 </h:body>
 </html>

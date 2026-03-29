@@ -1,5 +1,6 @@
 package lt.vu.fitlog.persistence;
 
+import lt.vu.fitlog.entities.Exercise;
 import lt.vu.fitlog.entities.WorkoutPlan;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
 
@@ -26,5 +27,10 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
     @Override
     public WorkoutPlan findOne(Long id) {
         return workoutPlanMapper.findOne(id);
+    }
+
+    @Override
+    public List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId) {
+        return workoutPlanMapper.findExercisesByWorkoutPlanId(workoutPlanId);
     }
 }

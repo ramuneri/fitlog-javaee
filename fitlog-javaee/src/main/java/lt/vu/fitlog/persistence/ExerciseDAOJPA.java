@@ -3,16 +3,13 @@ package lt.vu.fitlog.persistence;
 import lt.vu.fitlog.entities.Exercise;
 import lt.vu.fitlog.entities.MuscleGroup;
 
-import javax.enterprise.context.ApplicationScoped;
-//import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Alternative;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Collections;
 
 @ApplicationScoped
-//@Default
 @Alternative
 public class ExerciseDAOJPA implements ExerciseDAO {
 

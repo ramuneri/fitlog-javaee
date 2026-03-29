@@ -10,29 +10,37 @@
     <h1>Muscle Groups</h1>
 
     <p><h:link outcome="index" value="Back to Home" /></p>
-    <p><h:link outcome="workoutPlans" value="Go to Workout Plans page" /></p>
-    <p><h:link outcome="exercises" value="Go to Exercises page" /></p>
+    <p><h:link outcome="workoutPlans" value="Workout Plans" /></p>
+    <p><h:link outcome="exercises" value="Exercises" /></p>
 
     <h:messages style="color: red;" />
 
-    <h3>Add Muscle Group</h3>
-    <h:form>
-        <p>
-            Name:
-            <h:inputText value="#{muscleGroups.muscleGroupToCreate.name}" />
-        </p>
-        <h:commandButton value="Add Muscle Group" action="#{muscleGroups.createMuscleGroup}" />
-    </h:form>
+    <section>
+        <h2>Add New Muscle Group</h2>
+        <h:form>
+            <p>
+                <label>Name</label><br/>
+                <h:inputText value="#{muscleGroups.muscleGroupToCreate.name}" />
+            </p>
+            <h:commandButton value="Save Muscle Group" action="#{muscleGroups.createMuscleGroup}" />
+        </h:form>
+    </section>
 
-    <h3>All Muscle Groups</h3>
-    <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
-        <p>No muscle groups yet.</p>
-    </h:panelGroup>
+    <hr/>
 
-    <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
-        <p>
-            ID: #{muscleGroup.id} | #{muscleGroup.name}
-        </p>
-    </ui:repeat>
+    <section>
+        <h2>Muscle Group List</h2>
+
+        <h:panelGroup rendered="#{empty muscleGroups.allMuscleGroups}">
+            <p>No muscle groups found.</p>
+        </h:panelGroup>
+
+        <ui:repeat value="#{muscleGroups.allMuscleGroups}" var="muscleGroup">
+            <p>
+                <strong>ID:</strong> #{muscleGroup.id} |
+                <strong>Name:</strong> #{muscleGroup.name}
+            </p>
+        </ui:repeat>
+    </section>
 </h:body>
 </html>

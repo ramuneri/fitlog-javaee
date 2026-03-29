@@ -5,9 +5,9 @@ import lt.vu.fitlog.persistence.MuscleGroupDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import org.mybatis.cdi.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.mybatis.cdi.Transactional;
 import java.util.List;
 
 @Named

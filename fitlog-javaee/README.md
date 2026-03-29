@@ -6,6 +6,7 @@ TODO:
 - MyBatis declarative transactions?
 
 - Edit exercise with JPA as well
+- Do not allow to add the same muscle to an exercise
 
 
 # FitLog – Java EE Gym Workout Tracker

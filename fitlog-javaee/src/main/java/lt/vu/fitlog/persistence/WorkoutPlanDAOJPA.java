@@ -3,13 +3,15 @@ package lt.vu.fitlog.persistence;
 import lt.vu.fitlog.entities.WorkoutPlan;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Default;
+//import javax.enterprise.inject.Default;
+import javax.enterprise.inject.Alternative;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-@Default
+//@Default
+@Alternative
 public class WorkoutPlanDAOJPA implements WorkoutPlanDAO {
 
     @PersistenceContext

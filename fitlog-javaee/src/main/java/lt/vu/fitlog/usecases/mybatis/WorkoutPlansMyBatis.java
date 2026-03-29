@@ -2,8 +2,8 @@ package lt.vu.fitlog.usecases.mybatis;
 
 import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
-import lt.vu.fitlog.mybatis.model.Exercise;
-import lt.vu.fitlog.mybatis.model.WorkoutPlan;
+import lt.vu.fitlog.entities.Exercise;
+import lt.vu.fitlog.entities.WorkoutPlan;
 import org.mybatis.cdi.Transactional;
 
 import javax.annotation.PostConstruct;

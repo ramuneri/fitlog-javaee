@@ -1,6 +1,6 @@
 package lt.vu.fitlog.mybatis.dao;
 
-import lt.vu.fitlog.mybatis.model.Exercise;
+import lt.vu.fitlog.entities.Exercise;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
@@ -21,7 +21,7 @@ public interface ExerciseMapper {
     Exercise findOne(Long id);
 
     @Insert("INSERT INTO EXERCISE (NAME, SETS, REPS, WORKOUTPLAN_ID) " +
-            "VALUES (#{name}, #{sets}, #{reps}, #{workoutPlanId})")
+            "VALUES (#{name}, #{sets}, #{reps}, #{workoutPlan.id})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Exercise exercise);
 
@@ -41,5 +41,5 @@ public interface ExerciseMapper {
             "FROM MUSCLEGROUP MG " +
             "JOIN EXERCISE_MUSCLEGROUP EMG ON MG.ID = EMG.MUSCLEGROUPS_ID " +
             "WHERE EMG.EXERCISES_ID = #{exerciseId}")
-    List<lt.vu.fitlog.mybatis.model.MuscleGroup> findMuscleGroupsByExerciseId(Long exerciseId);
+    List<lt.vu.fitlog.entities.MuscleGroup> findMuscleGroupsByExerciseId(Long exerciseId);
 }

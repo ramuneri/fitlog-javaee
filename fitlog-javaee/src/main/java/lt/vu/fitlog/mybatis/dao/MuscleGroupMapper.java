@@ -1,6 +1,6 @@
 package lt.vu.fitlog.mybatis.dao;
 
-import lt.vu.fitlog.mybatis.model.MuscleGroup;
+import lt.vu.fitlog.entities.MuscleGroup;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;

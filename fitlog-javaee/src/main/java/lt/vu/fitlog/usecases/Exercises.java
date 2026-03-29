@@ -13,7 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
+import org.mybatis.cdi.Transactional;
 import java.util.List;
 
 @Named
@@ -42,6 +42,12 @@ public class Exercises {
     @PostConstruct
     public void init() {
         allExercises = exerciseDAO.loadAll();
+
+        for (Exercise exercise : allExercises) {
+            exercise.setMuscleGroups(
+                    exerciseDAO.findMuscleGroupsByExerciseId(exercise.getId())
+            );
+        }
     }
 
     @Transactional
@@ -76,10 +82,7 @@ public class Exercises {
             return null;
         }
 
-        if (!exercise.getMuscleGroups().contains(muscleGroup)) {
-            exercise.getMuscleGroups().add(muscleGroup);
-            muscleGroup.getExercises().add(exercise);
-        }
+        exerciseDAO.assignMuscleGroupToExercise(exerciseId, muscleGroupId);
 
         return "exercises?faces-redirect=true";
     }
@@ -112,6 +115,8 @@ public class Exercises {
         if (exerciseToUpdate.getReps() != null) {
             existingExercise.setReps(exerciseToUpdate.getReps());
         }
+
+        exerciseDAO.update(existingExercise);
 
         return "/exercises?faces-redirect=true";
     }

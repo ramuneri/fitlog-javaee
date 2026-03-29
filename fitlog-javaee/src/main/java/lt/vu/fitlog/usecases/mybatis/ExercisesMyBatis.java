@@ -3,7 +3,7 @@ package lt.vu.fitlog.usecases.mybatis;
 import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
 import lt.vu.fitlog.mybatis.dao.MuscleGroupMapper;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
-import lt.vu.fitlog.mybatis.model.Exercise;
+import lt.vu.fitlog.entities.Exercise;
 import org.mybatis.cdi.Transactional;
 
 import javax.annotation.PostConstruct;
@@ -64,7 +64,7 @@ public class ExercisesMyBatis {
             return null;
         }
 
-        exerciseToCreate.setWorkoutPlanId(workoutPlanId);
+//        exerciseToCreate.setWorkoutPlanId(workoutPlanId);
         exerciseMapper.insert(exerciseToCreate);
 
         return "/myBatis/exercises?faces-redirect=true";

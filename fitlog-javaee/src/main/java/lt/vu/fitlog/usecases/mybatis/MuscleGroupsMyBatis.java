@@ -1,7 +1,7 @@
 package lt.vu.fitlog.usecases.mybatis;
 
 import lt.vu.fitlog.mybatis.dao.MuscleGroupMapper;
-import lt.vu.fitlog.mybatis.model.MuscleGroup;
+import lt.vu.fitlog.entities.MuscleGroup;
 import org.mybatis.cdi.Transactional;
 
 import javax.annotation.PostConstruct;

@@ -16,5 +16,15 @@
         <p><h:link outcome="exercises" value="Exercises" /></p>
         <p><h:link outcome="muscleGroups" value="Muscle Groups" /></p>
     </nav>
+
+    <hr/>
+
+    <p>Homepage visits count: #{homePage.visitCount}</p>
+    <p>Counter instance ID: #{homePage.counterInstanceId}</p>
+
+    <h:form>
+        <h:commandButton value="Count visit" action="#{homePage.countVisit}" />
+    </h:form>
+
 </h:body>
 </html>

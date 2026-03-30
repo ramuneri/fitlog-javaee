@@ -43,11 +43,11 @@ public class Exercises {
     public void init() {
         allExercises = exerciseDAO.loadAll();
 
-        for (Exercise exercise : allExercises) {
-            exercise.setMuscleGroups(
-                    exerciseDAO.findMuscleGroupsByExerciseId(exercise.getId())
-            );
-        }
+//        for (Exercise exercise : allExercises) {
+//            exercise.setMuscleGroups(
+//                    exerciseDAO.findMuscleGroupsByExerciseId(exercise.getId())
+//            );
+//        }
     }
 
     @Transactional

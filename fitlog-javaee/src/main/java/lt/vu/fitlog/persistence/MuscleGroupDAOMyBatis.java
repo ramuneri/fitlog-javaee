@@ -4,10 +4,12 @@ import lt.vu.fitlog.entities.MuscleGroup;
 import lt.vu.fitlog.mybatis.dao.MuscleGroupMapper;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
+//@Alternative
 public class MuscleGroupDAOMyBatis implements MuscleGroupDAO {
 
     @Inject

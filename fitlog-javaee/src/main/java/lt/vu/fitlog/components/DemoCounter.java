@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.UUID;
 
 //@RequestScoped
-@SessionScoped
-//@ApplicationScoped
+//@SessionScoped
+@ApplicationScoped
 
 public class DemoCounter implements Serializable {
 

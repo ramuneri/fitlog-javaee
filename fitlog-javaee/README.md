@@ -80,7 +80,7 @@ This project was developed as part of a university assignment to demonstrate:
 - HomePage is the bean connected to the UI
 - it uses @Inject to get DemoCounter
 - DemoCounter is an independent CDI component
+- With @RequestScoped - counter resets every request, instanceId changes constantly (always 0)
 - With @SessionScoped, its state is kept during one user session - that is why the count stays even after page reload
-- With @RequestScoped - counter resets every request, instanceId changes constantly
 - With @ApplicationScoped - one bean for whole application, value would be shared globally
 

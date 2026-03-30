@@ -5,10 +5,12 @@ import lt.vu.fitlog.entities.WorkoutPlan;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
+//@Alternative
 public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
 
     @Inject

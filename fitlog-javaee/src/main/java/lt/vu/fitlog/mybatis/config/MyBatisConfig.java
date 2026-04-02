@@ -28,7 +28,6 @@ public class MyBatisConfig {
         org.apache.ibatis.session.Configuration configuration =
                 new org.apache.ibatis.session.Configuration();
 
-        configuration.addMapper(lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper.class);
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.MuscleGroupMapper.class);
 
         try (InputStream inputStream = getClass().getClassLoader()
@@ -48,6 +47,25 @@ public class MyBatisConfig {
             xmlMapperBuilder.parse();
         } catch (Exception e) {
             throw new RuntimeException("Failed to load ExerciseMapper.xml", e);
+        }
+
+        try (InputStream inputStream = getClass().getClassLoader()
+                .getResourceAsStream("lt/vu/fitlog/mybatis/dao/WorkoutPlanMapper.xml")) {
+
+            if (inputStream == null) {
+                throw new RuntimeException("WorkoutPlanMapper.xml not found");
+            }
+
+            XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(
+                    inputStream,
+                    configuration,
+                    "lt/vu/fitlog/mybatis/dao/WorkoutPlanMapper.xml",
+                    configuration.getSqlFragments()
+            );
+
+            xmlMapperBuilder.parse();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load WorkoutPlanMapper.xml", e);
         }
 
 

@@ -24,12 +24,6 @@ public class WorkoutPlans {
     @PostConstruct
     public void init() {
         allWorkoutPlans = workoutPlanDAO.loadAll();
-
-        for (WorkoutPlan workoutPlan : allWorkoutPlans) {
-            workoutPlan.setExercises(
-                    workoutPlanDAO.findExercisesByWorkoutPlanId(workoutPlan.getId())
-            );
-        }
     }
 
     @Transactional

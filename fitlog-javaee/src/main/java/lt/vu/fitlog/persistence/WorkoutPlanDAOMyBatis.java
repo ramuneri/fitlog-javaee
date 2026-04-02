@@ -23,7 +23,7 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
 
     @Override
     public List<WorkoutPlan> loadAll() {
-        return workoutPlanMapper.selectAll();
+        return workoutPlanMapper.selectAllWithGraph();
     }
 
     @Override

@@ -25,4 +25,6 @@ public interface WorkoutPlanMapper {
     @Select("SELECT ID, NAME, SETS, REPS, WORKOUTPLAN_ID AS workoutPlanId " +
             "FROM EXERCISE WHERE WORKOUTPLAN_ID = #{workoutPlanId}")
     List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId);
+
+    List<WorkoutPlan> selectAllWithGraph();
 }

@@ -42,4 +42,6 @@ public interface ExerciseMapper {
             "JOIN EXERCISE_MUSCLEGROUP EMG ON MG.ID = EMG.MUSCLEGROUPS_ID " +
             "WHERE EMG.EXERCISES_ID = #{exerciseId}")
     List<lt.vu.fitlog.entities.MuscleGroup> findMuscleGroupsByExerciseId(Long exerciseId);
+
+    List<Exercise> selectAllWithGraph();
 }

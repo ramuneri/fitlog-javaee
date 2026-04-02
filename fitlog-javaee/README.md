@@ -9,6 +9,8 @@ TODO:
 - Do not allow to add the same muscle to an exercise
 - Show existing workouts where you create an exercise
 
+- vienu select visos trys (usecase neturi modifikuoti dao komponentu)
+
 
 # FitLog – Java EE Gym Workout Tracker
 

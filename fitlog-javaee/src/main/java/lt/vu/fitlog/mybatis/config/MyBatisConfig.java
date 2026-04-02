@@ -1,11 +1,13 @@
 package lt.vu.fitlog.mybatis.config;
 
-import lt.vu.fitlog.mybatis.dao.*;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.cdi.SessionFactoryProvider;
+import org.apache.ibatis.builder.xml.XMLMapperBuilder;
+import java.io.InputStream;
+
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -26,9 +28,28 @@ public class MyBatisConfig {
         org.apache.ibatis.session.Configuration configuration =
                 new org.apache.ibatis.session.Configuration();
 
-        configuration.addMapper(lt.vu.fitlog.mybatis.dao.ExerciseMapper.class);
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper.class);
         configuration.addMapper(lt.vu.fitlog.mybatis.dao.MuscleGroupMapper.class);
+
+        try (InputStream inputStream = getClass().getClassLoader()
+                .getResourceAsStream("lt/vu/fitlog/mybatis/dao/ExerciseMapper.xml")) {
+
+            if (inputStream == null) {
+                throw new RuntimeException("ExerciseMapper.xml not found");
+            }
+
+            XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(
+                    inputStream,
+                    configuration,
+                    "lt/vu/fitlog/mybatis/dao/ExerciseMapper.xml",
+                    configuration.getSqlFragments()
+            );
+
+            xmlMapperBuilder.parse();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load ExerciseMapper.xml", e);
+        }
+
 
         Environment environment = new Environment(
                 "development",

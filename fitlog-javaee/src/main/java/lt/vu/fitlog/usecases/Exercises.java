@@ -42,12 +42,6 @@ public class Exercises {
     @PostConstruct
     public void init() {
         allExercises = exerciseDAO.loadAll();
-
-//        for (Exercise exercise : allExercises) {
-//            exercise.setMuscleGroups(
-//                    exerciseDAO.findMuscleGroupsByExerciseId(exercise.getId())
-//            );
-//        }
     }
 
     @Transactional

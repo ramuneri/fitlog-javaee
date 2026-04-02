@@ -33,7 +33,7 @@ public class ExerciseDAOMyBatis implements ExerciseDAO {
 
     @Override
     public List<Exercise> loadAll() {
-        return exerciseMapper.selectAll();
+        return exerciseMapper.selectAllWithGraph();
     }
 
     @Override

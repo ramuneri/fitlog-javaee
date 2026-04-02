@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lt.vu.fitlog.mybatis.dao.ExerciseMapper">
+
+    <resultMap id="exerciseGraphResultMap" type="lt.vu.fitlog.entities.Exercise">
+        <id property="id" column="e_id"/>
+        <result property="name" column="e_name"/>
+        <result property="sets" column="e_sets"/>
+        <result property="reps" column="e_reps"/>
+
+        <association property="workoutPlan" javaType="lt.vu.fitlog.entities.WorkoutPlan">
+            <id property="id" column="wp_id"/>
+            <result property="name" column="wp_name"/>
+            <result property="difficulty" column="wp_difficulty"/>
+        </association>
+
+        <collection property="muscleGroups" ofType="lt.vu.fitlog.entities.MuscleGroup">
+            <id property="id" column="mg_id"/>
+            <result property="name" column="mg_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllWithGraph" resultMap="exerciseGraphResultMap">
+        SELECT
+            e.ID AS e_id,
+            e.NAME AS e_name,
+            e.SETS AS e_sets,
+            e.REPS AS e_reps,
+
+            wp.ID AS wp_id,
+            wp.NAME AS wp_name,
+            wp.DIFFICULTY AS wp_difficulty,
+
+            mg.ID AS mg_id,
+            mg.NAME AS mg_name
+
+        FROM EXERCISE e
+                 JOIN WORKOUTPLAN wp ON wp.ID = e.WORKOUTPLAN_ID
+                 LEFT JOIN EXERCISE_MUSCLEGROUP emg ON emg.EXERCISES_ID = e.ID
+                 LEFT JOIN MUSCLEGROUP mg ON mg.ID = emg.MUSCLEGROUPS_ID
+        ORDER BY e.ID
+    </select>
+
+</mapper>

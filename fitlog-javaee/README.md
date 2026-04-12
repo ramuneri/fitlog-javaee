@@ -1,17 +1,3 @@
-TODO:
-- MyBatis for all
-- Edit component via JPA
-- CDI/use case beans??
-- when class becomes CDI bean?
-- MyBatis declarative transactions?
-
-- Edit exercise with JPA as well
-- Do not allow to add the same muscle to an exercise
-- Show existing workouts where you create an exercise
-
-- vienu select visos trys (usecase neturi modifikuoti dao komponentu)
-
-
 # FitLog – Java EE Gym Workout Tracker
 
 FitLog is a university project built with Java EE that allows users to create and manage gym workout plans, exercises, and muscle groups.
@@ -72,6 +58,29 @@ This project was developed as part of a university assignment to demonstrate:
 - Data binding and UI interaction
 - CDI and layered architecture
 
+---
+
+## How the big MyBatis query is used
+
+UI exercises.xhtml
+→
+Use case Exercises.java
+→
+DAO interface ExerciseDAO
+→
+active implementation ExerciseDAOMyBatis
+→
+mapper method ExerciseMapper.selectAllWithGraph()
+→
+XML mapper ExerciseMapper.xml
+→
+SQL with joins runs on DB
+→
+MyBatis maps rows to objects Exercise + WorkoutPlan + MuscleGroups
+→
+objects returned back to UI
+
+---
 
 ## DB
 

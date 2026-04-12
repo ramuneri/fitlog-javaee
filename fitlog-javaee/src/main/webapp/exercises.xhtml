@@ -12,6 +12,8 @@
     <h1>Exercises</h1>
 
     <p><h:link outcome="index" value="Back to Home" /></p>
+    <p><h:link outcome="workoutPlans" value="Workout Plans" /></p>
+    <p><h:link outcome="muscleGroups" value="Muscle Groups" /></p>
 
     <h:messages style="color: red;" />
 
@@ -55,11 +57,18 @@
 
         <ui:repeat value="#{exercises.allExercises}" var="exercise">
             <article>
+<!--                <p>-->
+<!--                    <strong>ID:</strong> #{exercise.id}<br/>-->
+<!--                    <strong>Name:</strong> #{exercise.name}<br/>-->
+<!--                    <strong>Sets:</strong> #{exercise.sets}<br/>-->
+<!--                    <strong>Repetitions:</strong> #{exercise.reps}-->
+<!--                </p>-->
                 <p>
-                    <strong>ID:</strong> #{exercise.id}<br/>
-                    <strong>Name:</strong> #{exercise.name}<br/>
-                    <strong>Sets:</strong> #{exercise.sets}<br/>
-                    <strong>Repetitions:</strong> #{exercise.reps}
+                    ID: #{exercise.id} | #{exercise.name}
+                </p>
+                <p>
+                    Workout plan: #{exercise.workoutPlan.name}
+                    (#{exercise.sets} sets x #{exercise.reps} reps)
                 </p>
 
                 <p><strong>Target Muscle Groups:</strong></p>

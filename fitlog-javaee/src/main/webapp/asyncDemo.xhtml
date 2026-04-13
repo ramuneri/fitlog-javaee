@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Async Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+</h:head>
+<h:body>
+    <h1>Asynchronous Communication Demo</h1>
+
+    <p><h:link outcome="index" value="Back to Home" /></p>
+
+    <h:form>
+        <h:commandButton value="Start Long Calculation" action="#{asyncDemo.startAsyncTask}" />
+    </h:form>
+
+    <p>After clicking the button, check server console.</p>
+</h:body>
+</html>

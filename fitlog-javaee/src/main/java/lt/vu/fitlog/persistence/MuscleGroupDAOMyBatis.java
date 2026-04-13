@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-//@Alternative
+@Alternative
 public class MuscleGroupDAOMyBatis implements MuscleGroupDAO {
 
     @Inject

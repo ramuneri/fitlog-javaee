@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-//@Alternative
+@Alternative
 public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
 
     @Inject
@@ -34,5 +34,10 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
     @Override
     public List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId) {
         return workoutPlanMapper.findExercisesByWorkoutPlanId(workoutPlanId);
+    }
+
+    @Override
+    public WorkoutPlan update(WorkoutPlan workoutPlan) {
+        throw new UnsupportedOperationException("Optimistic locking demo is implemented only in JPA DAO. Will be added later (maybe).");
     }
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Edit Workout Plan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+</h:head>
+<h:body>
+<!--    <h1>Edit Workout Plan</h1>-->
+    <h1>EDIT PAGE TEST 123</h1>
+
+    <p><h:link outcome="workoutPlans" value="Back to Workout Plans" /></p>
+
+    <h:messages style="color: red;" />
+
+    <h:panelGroup rendered="#{not empty editWorkoutPlan.workoutPlan}">
+        <h:form>
+            <h:inputHidden value="#{editWorkoutPlan.workoutPlan.id}" />
+            <h:inputHidden value="#{editWorkoutPlan.workoutPlan.version}" />
+
+            <p>
+                <label>Name</label><br/>
+                <h:inputText value="#{editWorkoutPlan.workoutPlan.name}" />
+            </p>
+
+            <p>
+                <label>Difficulty</label><br/>
+                <h:inputText value="#{editWorkoutPlan.workoutPlan.difficulty}" />
+            </p>
+
+            <h:commandButton value="Save Changes" action="#{editWorkoutPlan.save}" />
+        </h:form>
+    </h:panelGroup>
+
+    <h:panelGroup rendered="#{empty editWorkoutPlan.workoutPlan}">
+        <p>Workout plan not found.</p>
+    </h:panelGroup>
+</h:body>
+</html>

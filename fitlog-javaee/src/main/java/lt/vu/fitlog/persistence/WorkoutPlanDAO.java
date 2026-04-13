@@ -14,4 +14,6 @@ public interface WorkoutPlanDAO {
     WorkoutPlan findOne(Long id);
 
     List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId);
+
+    WorkoutPlan update(WorkoutPlan workoutPlan);
 }

@@ -5,13 +5,18 @@ import lt.vu.fitlog.persistence.MuscleGroupDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import org.mybatis.cdi.Transactional;
+//import org.mybatis.cdi.Transactional;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
+import javax.transaction.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
 @RequestScoped
+//@SessionScoped
+//@ViewScoped
 public class MuscleGroups {
 
     @Inject

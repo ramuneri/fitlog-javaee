@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Workout Plans</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
@@ -45,6 +46,12 @@
                     <strong>ID:</strong> #{plan.id}<br/>
                     <strong>Name:</strong> #{plan.name}<br/>
                     <strong>Difficulty:</strong> #{plan.difficulty}
+                </p>
+
+                <p>
+                    <h:link outcome="editWorkoutPlan" value="Edit">
+                        <f:param name="id" value="#{plan.id}" />
+                    </h:link>
                 </p>
 
                 <p><strong>Exercises:</strong></p>

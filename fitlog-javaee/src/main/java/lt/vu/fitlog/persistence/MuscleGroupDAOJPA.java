@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-@Alternative
+//@Alternative
 public class MuscleGroupDAOJPA implements MuscleGroupDAO {
 
     @PersistenceContext

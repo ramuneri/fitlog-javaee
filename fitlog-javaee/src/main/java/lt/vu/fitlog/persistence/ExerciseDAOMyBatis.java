@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-//@Alternative
+@Alternative
 public class ExerciseDAOMyBatis implements ExerciseDAO {
 
     @Inject

@@ -9,15 +9,20 @@ import lt.vu.fitlog.persistence.WorkoutPlanDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.mybatis.cdi.Transactional;
+//import org.mybatis.cdi.Transactional;
+import javax.faces.view.ViewScoped;
+import javax.transaction.Transactional;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
 @Named
 @RequestScoped
+//@SessionScoped
+//@ViewScoped
 public class Exercises {
 
     @Inject

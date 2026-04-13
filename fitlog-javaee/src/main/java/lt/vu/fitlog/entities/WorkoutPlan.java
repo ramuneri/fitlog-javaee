@@ -13,6 +13,9 @@ public class WorkoutPlan {
     private String name;
     private String difficulty;
 
+    @Version
+    private Long version;
+
     @OneToMany(mappedBy = "workoutPlan", fetch = FetchType.EAGER)
     private List<Exercise> exercises = new java.util.ArrayList<>();
 
@@ -49,5 +52,13 @@ public class WorkoutPlan {
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

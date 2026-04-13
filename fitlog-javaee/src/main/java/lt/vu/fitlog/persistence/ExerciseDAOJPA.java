@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-@Alternative
+//@Alternative
 public class ExerciseDAOJPA implements ExerciseDAO {
 
     @PersistenceContext

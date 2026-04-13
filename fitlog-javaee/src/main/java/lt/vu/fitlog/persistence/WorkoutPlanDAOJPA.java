@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
-@Alternative
+//@Alternative
 public class WorkoutPlanDAOJPA implements WorkoutPlanDAO {
 
     @PersistenceContext
@@ -35,5 +35,12 @@ public class WorkoutPlanDAOJPA implements WorkoutPlanDAO {
     public List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId) {
         WorkoutPlan workoutPlan = em.find(WorkoutPlan.class, workoutPlanId);
         return workoutPlan != null ? workoutPlan.getExercises() : java.util.Collections.emptyList();
+    }
+
+    @Override
+    public WorkoutPlan update(WorkoutPlan workoutPlan) {
+        WorkoutPlan merged = em.merge(workoutPlan);
+        em.flush();
+        return merged;
     }
 }

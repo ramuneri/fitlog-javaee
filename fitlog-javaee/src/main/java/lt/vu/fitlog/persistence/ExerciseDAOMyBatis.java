@@ -33,6 +33,7 @@ public class ExerciseDAOMyBatis implements ExerciseDAO {
 
     @Override
     public List<Exercise> loadAll() {
+        System.out.println("USING MYBATIS ExerciseDAO");
         return exerciseMapper.selectAllWithGraph();
     }
 

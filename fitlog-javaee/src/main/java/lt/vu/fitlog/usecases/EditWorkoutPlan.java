@@ -53,7 +53,7 @@ public class EditWorkoutPlan implements Serializable {
         } catch (OptimisticLockException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "OptimisticLockException: someone else already updated this workout plan. Reload and try again.",
+                            "OptimisticLockException: someone else already updated this workout plan. Come back and try again.",
                             null));
 
             return null;

@@ -40,6 +40,7 @@ public class ExerciseDAOJPA implements ExerciseDAO {
 
     @Override
     public List<Exercise> loadAll() {
+        System.out.println("USING JPA ExerciseDAO");
         return em.createQuery("select e from Exercise e", Exercise.class).getResultList();
     }
 

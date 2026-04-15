@@ -5,6 +5,12 @@
        http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
 
+    <alternatives>
+        <class>lt.vu.fitlog.persistence.ExerciseDAOMyBatis</class>
+        <class>lt.vu.fitlog.persistence.MuscleGroupDAOMyBatis</class>
+        <class>lt.vu.fitlog.persistence.WorkoutPlanDAOMyBatis</class>
+    </alternatives>
+
     <interceptors>
         <class>org.mybatis.cdi.LocalTransactionInterceptor</class>
     </interceptors>

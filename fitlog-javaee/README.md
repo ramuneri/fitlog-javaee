@@ -1,5 +1,6 @@
 # To do
 - OptimisticLockException for mybatis manual??
+- Why interception is called twice with getAllMuscleGroups() ?
 
 # FitLog – Java EE Gym Workout Tracker
 

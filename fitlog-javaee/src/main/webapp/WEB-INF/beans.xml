@@ -13,6 +13,7 @@
 
     <interceptors>
         <class>org.mybatis.cdi.LocalTransactionInterceptor</class>
+        <class>lt.vu.fitlog.interceptors.LoggingInterceptor</class>
     </interceptors>
 
 </beans>

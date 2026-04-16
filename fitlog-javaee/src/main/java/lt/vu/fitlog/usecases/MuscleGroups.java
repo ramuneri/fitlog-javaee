@@ -1,6 +1,7 @@
 package lt.vu.fitlog.usecases;
 
 import lt.vu.fitlog.entities.MuscleGroup;
+import lt.vu.fitlog.interceptors.Logged;
 import lt.vu.fitlog.persistence.MuscleGroupDAO;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +38,7 @@ public class MuscleGroups {
         return "muscleGroups?faces-redirect=true";
     }
 
+    @Logged
     public List<MuscleGroup> getAllMuscleGroups() {
         return allMuscleGroups;
     }

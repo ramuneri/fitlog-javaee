@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Delete;
 import org.mybatis.cdi.Mapper;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public interface WorkoutPlanMapper {
             "FROM EXERCISE WHERE WORKOUTPLAN_ID = #{workoutPlanId}")
     List<Exercise> findExercisesByWorkoutPlanId(Long workoutPlanId);
 
-
     List<WorkoutPlan> selectAllWithGraph();
+
+    @Delete("DELETE FROM WORKOUTPLAN WHERE ID = #{id}")
+    void delete(Long id);
 }

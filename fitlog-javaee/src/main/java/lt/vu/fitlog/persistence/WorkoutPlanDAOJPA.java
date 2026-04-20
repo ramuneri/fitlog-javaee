@@ -43,4 +43,12 @@ public class WorkoutPlanDAOJPA implements WorkoutPlanDAO {
         em.flush();
         return merged;
     }
+
+    @Override
+    public void delete(Long id) {
+        WorkoutPlan workoutPlan = em.find(WorkoutPlan.class, id);
+        if (workoutPlan != null) {
+            em.remove(workoutPlan);
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class WorkoutPlan {
     @Version
     private Long version;
 
-    @OneToMany(mappedBy = "workoutPlan", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "workoutPlan", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Exercise> exercises = new java.util.ArrayList<>();
 
     public WorkoutPlan() {

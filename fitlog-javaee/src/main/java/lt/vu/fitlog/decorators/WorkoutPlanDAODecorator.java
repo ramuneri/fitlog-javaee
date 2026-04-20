@@ -18,9 +18,9 @@ public abstract class WorkoutPlanDAODecorator implements WorkoutPlanDAO {
 
     @Override
     public void persist(WorkoutPlan workoutPlan) {
-        System.out.println("DECORATOR: before persisting workout plan: " + workoutPlan.getName());
+        System.out.println("Saving workout plan... (DECORATOR): " + workoutPlan.getName());
         workoutPlanDAO.persist(workoutPlan);
-        System.out.println("DECORATOR: after persisting workout plan");
+        System.out.println("Saved successfully! (DECORATOR)");
     }
 
     @Override

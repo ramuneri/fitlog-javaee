@@ -38,6 +38,7 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
 
     @Override
     public WorkoutPlan update(WorkoutPlan workoutPlan) {
-        throw new UnsupportedOperationException("Optimistic locking demo is implemented only in JPA DAO. Will be added later (maybe).");
+        workoutPlanMapper.update(workoutPlan);
+        return workoutPlan;
     }
 }

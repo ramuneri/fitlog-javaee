@@ -40,6 +40,7 @@ public class WorkoutPlanResource {
         WorkoutPlan workoutPlan = new WorkoutPlan();
         workoutPlan.setName(dto.name);
         workoutPlan.setDifficulty(dto.difficulty);
+        workoutPlan.setVersion(0L);
 
         workoutPlanDAO.persist(workoutPlan);
 

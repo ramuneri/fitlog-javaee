@@ -90,7 +90,6 @@ objects returned back to UI
 
 ![img_1.png](img_1.png)
 
-
 ## `Count visit` - a button for scopes demo
 - HomePage is the bean connected to the UI
 - it uses @Inject to get DemoCounter
@@ -99,3 +98,7 @@ objects returned back to UI
 - With @SessionScoped, its state is kept during one user session - that is why the count stays even after page reload
 - With @ApplicationScoped - one bean for whole application, value would be shared globally
 
+## Test REST API
+- Deploy/run your project on WildFly
+- GET - http://localhost:8080/fitlog-javaee/api/workoutPlans/1
+- 

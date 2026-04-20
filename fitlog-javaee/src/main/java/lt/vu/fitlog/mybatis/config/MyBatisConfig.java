@@ -3,7 +3,8 @@ package lt.vu.fitlog.mybatis.config;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+//import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
 import org.mybatis.cdi.SessionFactoryProvider;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import java.io.InputStream;
@@ -69,9 +70,14 @@ public class MyBatisConfig {
         }
 
 
+//        Environment environment = new Environment(
+//                "development",
+//                new JdbcTransactionFactory(),
+//                dataSource
+//        );
         Environment environment = new Environment(
                 "development",
-                new JdbcTransactionFactory(),
+                new ManagedTransactionFactory(),
                 dataSource
         );
 

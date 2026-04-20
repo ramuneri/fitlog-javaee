@@ -12,7 +12,8 @@
     </alternatives>
 
     <interceptors>
-        <class>org.mybatis.cdi.LocalTransactionInterceptor</class>
+<!--        <class>org.mybatis.cdi.LocalTransactionInterceptor</class>-->
+        <class>org.mybatis.cdi.JtaTransactionInterceptor</class>
         <class>lt.vu.fitlog.interceptors.LoggingInterceptor</class>
     </interceptors>
 

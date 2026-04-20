@@ -19,7 +19,7 @@ public interface WorkoutPlanMapper {
     @Select("SELECT ID, NAME, DIFFICULTY FROM WORKOUTPLAN WHERE ID = #{id}")
     WorkoutPlan findOne(Long id);
 
-    @Insert("INSERT INTO WORKOUTPLAN (NAME, DIFFICULTY) VALUES (#{name}, #{difficulty})")
+    @Insert("INSERT INTO WORKOUTPLAN (NAME, DIFFICULTY, VERSION) VALUES (#{name}, #{difficulty}, #{version})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(WorkoutPlan workoutPlan);
 

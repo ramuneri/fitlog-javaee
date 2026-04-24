@@ -71,4 +71,20 @@ public class WorkoutPlanResource {
 
         return Response.ok(responseDto).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
+        WorkoutPlan existingWorkoutPlan = workoutPlanDAO.findOne(id);
+
+        if (existingWorkoutPlan == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        workoutPlanDAO.delete(id);
+
+        return Response.noContent().build();
+    }
+
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Delete;
 import org.mybatis.cdi.Mapper;
 
 import java.util.List;
@@ -36,6 +37,17 @@ public interface ExerciseMapper {
     @Delete("DELETE FROM EXERCISE_MUSCLEGROUP WHERE EXERCISES_ID = #{exerciseId} AND MUSCLEGROUPS_ID = #{muscleGroupId}")
     int removeMuscleGroupFromExercise(@Param("exerciseId") Long exerciseId,
                                       @Param("muscleGroupId") Long muscleGroupId);
+
+    @Delete("DELETE FROM EXERCISE WHERE WORKOUTPLAN_ID = #{workoutPlanId}")
+    void deleteByWorkoutPlanId(Long workoutPlanId);
+
+    @Delete("""
+    DELETE FROM EXERCISE_MUSCLEGROUP
+    WHERE EXERCISES_ID IN (
+        SELECT ID FROM EXERCISE WHERE WORKOUTPLAN_ID = #{workoutPlanId}
+    )
+""")
+    void deleteMuscleGroupRelationsByWorkoutPlanId(Long workoutPlanId);
 
     @Select("SELECT MG.ID, MG.NAME " +
             "FROM MUSCLEGROUP MG " +

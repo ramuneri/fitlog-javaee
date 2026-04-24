@@ -3,6 +3,7 @@ package lt.vu.fitlog.persistence;
 import lt.vu.fitlog.entities.Exercise;
 import lt.vu.fitlog.entities.WorkoutPlan;
 import lt.vu.fitlog.mybatis.dao.WorkoutPlanMapper;
+import lt.vu.fitlog.mybatis.dao.ExerciseMapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
@@ -15,6 +16,9 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
 
     @Inject
     private WorkoutPlanMapper workoutPlanMapper;
+
+    @Inject
+    private ExerciseMapper exerciseMapper;
 
     @Override
     public void persist(WorkoutPlan workoutPlan) {
@@ -40,5 +44,12 @@ public class WorkoutPlanDAOMyBatis implements WorkoutPlanDAO {
     public WorkoutPlan update(WorkoutPlan workoutPlan) {
         workoutPlanMapper.update(workoutPlan);
         return workoutPlan;
+    }
+
+    @Override
+    public void delete(Long id) {
+        exerciseMapper.deleteMuscleGroupRelationsByWorkoutPlanId(id);
+        exerciseMapper.deleteByWorkoutPlanId(id);
+        workoutPlanMapper.delete(id);
     }
 }

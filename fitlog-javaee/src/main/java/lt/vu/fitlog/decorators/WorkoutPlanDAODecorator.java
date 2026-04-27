@@ -25,7 +25,7 @@ public abstract class WorkoutPlanDAODecorator implements WorkoutPlanDAO {
 
     @Override
     public List<WorkoutPlan> loadAll() {
-        System.out.println("DECORATOR: loading all workout plans yappy");
+        System.out.println("DECORATOR: loading all workout plans yappy (DECORATOR)");
         return workoutPlanDAO.loadAll();
     }
 

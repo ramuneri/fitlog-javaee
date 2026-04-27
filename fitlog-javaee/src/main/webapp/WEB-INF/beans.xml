@@ -6,13 +6,12 @@
        bean-discovery-mode="annotated">
 
     <alternatives>
-        <class>lt.vu.fitlog.persistence.ExerciseDAOMyBatis</class>
-        <class>lt.vu.fitlog.persistence.MuscleGroupDAOMyBatis</class>
-        <class>lt.vu.fitlog.persistence.WorkoutPlanDAOMyBatis</class>
+<!--        <class>lt.vu.fitlog.persistence.ExerciseDAOMyBatis</class>-->
+<!--        <class>lt.vu.fitlog.persistence.MuscleGroupDAOMyBatis</class>-->
+<!--        <class>lt.vu.fitlog.persistence.WorkoutPlanDAOMyBatis</class>-->
     </alternatives>
 
     <interceptors>
-<!--        <class>org.mybatis.cdi.LocalTransactionInterceptor</class>-->
         <class>org.mybatis.cdi.JtaTransactionInterceptor</class>
         <class>lt.vu.fitlog.interceptors.LoggingInterceptor</class>
     </interceptors>

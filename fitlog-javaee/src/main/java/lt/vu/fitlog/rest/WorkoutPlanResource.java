@@ -86,5 +86,4 @@ public class WorkoutPlanResource {
 
         return Response.noContent().build();
     }
-
 }

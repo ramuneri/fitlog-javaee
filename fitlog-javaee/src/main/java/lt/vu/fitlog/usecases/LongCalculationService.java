@@ -2,23 +2,29 @@ package lt.vu.fitlog.usecases;
 
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 @Stateless
 public class LongCalculationService {
 
+    @Inject
+    private AsyncProgress asyncProgress;
+
+
     @Asynchronous
     public void doLongCalculation() {
         try {
-            System.out.println("ASYNC TASK STARTED");
+            asyncProgress.start();
 
-            for (int i = 1; i <= 8; i++) {
+            for (int i = 1; i <= 5; i++) {
                 Thread.sleep(1000);
-                System.out.println("ASYNC TASK WORKING... step " + i);
+                asyncProgress.update(i * 20, "Working... step " + i);
             }
 
-            System.out.println("ASYNC TASK FINISHED");
+            asyncProgress.finish();
+
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }

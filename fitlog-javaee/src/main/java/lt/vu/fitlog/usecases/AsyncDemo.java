@@ -12,10 +12,18 @@ public class AsyncDemo implements Serializable {
     @Inject
     private LongCalculationService longCalculationService;
 
-    public String startAsyncTask() {
+    @Inject
+    private AsyncProgress asyncProgress;
+
+    public void startCalculation() {
         System.out.println("BUTTON CLICKED");
+
         longCalculationService.doLongCalculation();
+
         System.out.println("REQUEST FINISHED, USER DOES NOT WAIT");
-        return null;
+    }
+
+    public AsyncProgress getAsyncProgress() {
+        return asyncProgress;
     }
 }

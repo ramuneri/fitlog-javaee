@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Specializes;
 
 @RequestScoped
-@Specializes
+//@Specializes
 public class SpecializedWorkoutPlans extends WorkoutPlans {
 
     @Override

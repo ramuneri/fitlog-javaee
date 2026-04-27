@@ -1,7 +1,3 @@
-# To do
-- OptimisticLockException for mybatis manual??
-- Why interception is called twice with getAllMuscleGroups() ?
-
 # FitLog – Java EE Gym Workout Tracker
 
 FitLog is a university project built with Java EE that allows users to create and manage gym workout plans, exercises, and muscle groups.

@@ -170,14 +170,17 @@ Deploy the generated `.war` file to your application server.
 ## Screenshots
 
 * DB
+
 ![img.png](img.png)
 
 * Workout plan UI
+
 ![img_2.png](img_2.png)
 
 * API testing (e.g. Postman)
+
 ![img_1.png](img_1.png)
-* 
+
 ---
 
 ## Notes
